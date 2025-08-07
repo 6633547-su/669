@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOGUE STYLE - Fashion Curation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        .sans-serif {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 50px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1a1a1a;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-slider {
+            position: relative;
+            height: 100%;
+            display: flex;
+            transition: transform 0.8s ease;
+        }
+
+        .hero-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: #1a1a1a;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .hero-cta:hover {
+            color: white;
+        }
+
+        .hero-cta:hover::before {
+            width: 100%;
+        }
+
+        /* Featured Section */
+        .featured-section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #1a1a1a;
+        }
+
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        /* Outfit Configurator */
+        .outfit-configurator {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 80px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .configurator-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .configurator-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-progress {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            width: 12.5%;
+        }
+
+        .progress-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .question-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        .question-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .quiz-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .option-icon {
+            font-size: 32px;
+            margin-right: 20px;
+            min-width: 50px;
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-text {
+            font-size: 18px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .option-desc {
+            font-size: 14px;
+            opacity: 0.8;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .quiz-results {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .results-content h4 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .results-summary {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        .restart-quiz-btn {
+            padding: 12px 30px;
+            margin: 5px;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            background: transparent;
+            color: #667eea;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .restart-quiz-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .results-actions {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+
+
+        /* Quiz Results Styles */
+        .quiz-results {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .results-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .results-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .results-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
+
+        .results-summary {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+
+        .results-summary h5 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .results-summary p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .get-recommendations-btn,
+        .retake-quiz-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .get-recommendations-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .get-recommendations-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .retake-quiz-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .retake-quiz-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Email Modal Styles */
+        .email-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .email-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .email-modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.4s ease;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .email-modal.show .email-modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .email-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            transition: all 0.3s ease;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-modal-close:hover {
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .email-modal-header {
+            text-align: center;
+            padding: 50px 40px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px 25px 0 0;
+            color: white;
+        }
+
+        .email-modal-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .email-modal-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .email-modal-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .email-form {
+            padding: 30px 40px 20px;
+        }
+
+        .email-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .email-input {
+            padding: 18px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .email-submit-btn {
+            padding: 18px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .email-submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .email-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .email-submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .email-benefits {
+            padding: 20px 40px;
+            background: #f8f9fa;
+        }
+
+        .email-benefits h5 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            text-align: center;
+        }
+
+        .email-benefits ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .email-benefits li {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .email-benefits li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 16px;
+        }
+
+        .email-footer {
+            text-align: center;
+            padding: 20px 40px 30px;
+            background: #f8f9fa;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .email-footer p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: #666;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Success Modal Styles */
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .success-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-modal-content {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.7);
+            transition: all 0.4s ease;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-modal.show .success-modal-content {
+            transform: scale(1);
+        }
+
+        .success-animation {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+            40%, 43% { transform: translate3d(0,-30px,0); }
+            70% { transform: translate3d(0,-15px,0); }
+            90% { transform: translate3d(0,-4px,0); }
+        }
+
+        .success-confetti {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            animation: confetti 3s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        .success-message {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .success-close-btn {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .success-close-btn:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Page Modal Styles */
+        .page-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .page-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-modal.show .page-modal-content {
+            transform: translateY(0);
+        }
+
+        .page-modal-header {
+            padding: 30px 40px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .page-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .page-modal-close:hover {
+            color: #333;
+        }
+
+        .page-modal-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .page-modal-body {
+            padding: 0 40px 40px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .page-modal-body h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 30px 0 15px;
+            color: #1a1a1a;
+        }
+
+        .page-modal-body h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 25px 0 10px;
+            color: #1a1a1a;
+        }
+
+        .page-modal-body p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .page-modal-body ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .page-modal-body li {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .contact-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-info a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Fashion Quiz Styles */
+        .fashion-quiz-section {
+            margin-top: 100px;
+            padding: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            color: white;
+            text-align: center;
+        }
+
+        .quiz-header {
+            margin-bottom: 40px;
+        }
+
+        .quiz-main-title {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .quiz-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .start-quiz-btn {
+            padding: 18px 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .start-quiz-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quiz-progress {
+            margin-bottom: 40px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fff, rgba(255,255,255,0.8));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-card {
+            text-align: left;
+        }
+
+        .question-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .question-options {
+            display: grid;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .quiz-option.selected {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .option-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-text {
+            font-size: 18px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .option-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(100px);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-info {
+            transform: translateY(0);
+        }
+
+        .product-category {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .product-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Style Guide Section */
+        .style-guide {
+            background: #f5f5f5;
+            padding: 100px 50px;
+        }
+
+        .style-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            align-items: center;
+        }
+
+        .style-content {
+            padding: 40px;
+        }
+
+        .style-title {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .style-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .style-items {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .style-tag {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .style-tag:hover {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+
+        .style-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 600px;
+        }
+
+        .style-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lookbook Gallery */
+        .lookbook-gallery {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            grid-auto-rows: 350px;
+        }
+
+        .lookbook-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .lookbook-item:nth-child(1),
+        .lookbook-item:nth-child(6) {
+            grid-row: span 2;
+        }
+
+        .lookbook-item:nth-child(4) {
+            grid-column: span 2;
+        }
+
+        .lookbook-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .lookbook-item:hover .lookbook-image {
+            transform: scale(1.1);
+        }
+
+        .lookbook-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lookbook-item:hover .lookbook-overlay {
+            opacity: 1;
+        }
+
+        .lookbook-text {
+            color: white;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 50px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #999;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                margin-top: 60px;
+            }
+
+            .featured-section,
+            .style-guide,
+            .lookbook-gallery {
+                padding: 60px 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .style-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .lookbook-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .lookbook-item {
+                grid-row: auto !important;
+                grid-column: auto !important;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .outfit-configurator {
+                padding: 20px;
+                margin-bottom: 40px;
+            }
+
+            .configurator-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .question-card {
+                padding: 30px 20px;
+            }
+
+            .quiz-option {
+                padding: 15px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .option-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .outfit-items {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .selector-options {
+                justify-content: center;
+            }
+
+            .option-btn {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+
+            .fun-features {
+                padding: 30px 20px;
+                margin-bottom: 40px;
+            }
+
+            .fun-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .mini-games {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .memory-game {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+            .spinner {
+                width: 150px;
+                height: 150px;
+            }
+
+
+
+            .page-modal-content {
+                margin: 10px;
+                max-height: 90vh;
+            }
+
+            .page-modal-header {
+                padding: 20px 20px 0;
+            }
+
+            .page-modal-body {
+                padding: 0 20px 30px;
+            }
+
+            .page-modal-title {
+                font-size: 24px;
+            }
+
+            .page-modal-body h2 {
+                font-size: 20px;
+            }
+
+            .page-modal-body h3 {
+                font-size: 18px;
+            }
+
+            .page-modal-body p,
+            .page-modal-body li {
+                font-size: 14px;
+            }
+
+            .fashion-quiz-section {
+                padding: 40px 20px;
+                margin-top: 60px;
+            }
+
+            .quiz-main-title {
+                font-size: 32px;
+            }
+
+            .quiz-subtitle {
+                font-size: 16px;
+            }
+
+            .quiz-container {
+                padding: 25px;
+            }
+
+            .question-title {
+                font-size: 22px;
+            }
+
+            .quiz-option {
+                padding: 15px 20px;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .option-icon {
+                font-size: 28px;
+            }
+
+            .option-text {
+                font-size: 16px;
+            }
+
+            .option-desc {
+                font-size: 13px;
+            }
+
+            .email-modal-content {
+                margin: 10px;
+                border-radius: 20px;
+            }
+
+            .email-modal-header {
+                padding: 40px 25px 25px;
+            }
+
+            .email-modal-title {
+                font-size: 26px;
+            }
+
+            .email-modal-subtitle {
+                font-size: 14px;
+            }
+
+            .email-form {
+                padding: 25px;
+            }
+
+            .email-benefits {
+                padding: 20px 25px;
+            }
+
+            .email-footer {
+                padding: 15px 25px 25px;
+            }
+
+            .success-modal-content {
+                padding: 40px 25px;
+                margin: 10px;
+            }
+
+            .success-title {
+                font-size: 24px;
+            }
+
+            .success-message {
+                font-size: 15px;
+            }
+        }
+
+        /* About Section Styles */
+        .about-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-content {
+            margin-top: 60px;
+        }
+
+        .about-story,
+        .about-mission,
+        .about-values,
+        .about-team {
+            margin-bottom: 60px;
+        }
+
+        .about-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .about-content p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .value-item h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .value-item p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                padding: 60px 0;
+            }
+
+            .about-content h3 {
+                font-size: 24px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .value-item {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">VOGUE STYLE</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#style-guide">Style Guide</a></li>
+                <li><a href="#lookbook">Lookbook</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1600&h=900&fit=crop');">
+                <div class="hero-overlay">
+                    <div class="hero-content">
+                        <p class="hero-subtitle">Spring/Summer 2025</p>
+                        <h1 class="hero-title">Redefining Modern Elegance</h1>
+                        <a href="#" class="hero-cta" onclick="showEmailModal(); return false;">Explore Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Style Guide Section -->
+    <section class="style-guide" id="style-guide">
+        <div class="style-container">
+            <div class="section-header">
+                <h2 class="section-title">Style Inspiration</h2>
+                <p class="section-subtitle">Discover your perfect look</p>
+            </div>
+
+            <!-- Fashion Style Quiz -->
+            <div class="fashion-quiz-section">
+                <div class="quiz-header">
+                    <h3 class="quiz-main-title">Discover Your Personal Style</h3>
+                    <p class="quiz-subtitle">Take our comprehensive style assessment to receive personalized fashion recommendations tailored just for you</p>
+                    <button class="start-quiz-btn" id="startQuizBtn">Start Style Assessment</button>
+                </div>
+
+                <div class="quiz-container" id="quizContainer" style="display: none;">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text">Question <span id="currentQuestion">1</span> of <span id="totalQuestions">12</span></span>
+                    </div>
+
+                    <div class="question-card" id="questionCard">
+                        <h4 class="question-title" id="questionTitle"></h4>
+                        <div class="question-options" id="questionOptions"></div>
+                    </div>
+
+                    <div class="quiz-results" id="quizResults" style="display: none;">
+                        <div class="results-content">
+                            <div class="results-icon">✨</div>
+                            <h4 class="results-title">Your Style Profile is Complete!</h4>
+                            <div class="results-summary" id="resultsSummary"></div>
+                            <div class="results-actions">
+                                <button class="get-recommendations-btn" id="getRecommendationsBtn">Get My Personalized Recommendations</button>
+                                <button class="retake-quiz-btn" id="retakeQuizBtn">Retake Assessment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="style-grid">
+                <div class="style-content">
+                    <h3 class="style-title">Office Elegance</h3>
+                    <p class="style-description">
+                        Master the art of professional dressing with our curated selection of 
+                        sophisticated pieces. From power suits to elegant blouses, create a 
+                        wardrobe that commands respect while expressing your personal style.
+                    </p>
+                    <div class="style-items">
+                        <span class="style-tag">Blazers</span>
+                        <span class="style-tag">Pencil Skirts</span>
+                        <span class="style-tag">Silk Shirts</span>
+                        <span class="style-tag">Loafers</span>
+                    </div>
+                </div>
+                <div class="style-image-container">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop" alt="Office Style" class="style-image">
+                </div>
+            </div>
+
+            <div class="style-grid" style="margin-top: 80px;">
+                <div class="style-image-container">
+                    <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&h=800&fit=crop" alt="Weekend Style" class="style-image">
+                </div>
+                <div class="style-content">
+                    <h3 class="style-title">Weekend Casual</h3>
+                    <p class="style-description">
+                        Embrace relaxed sophistication with our weekend essentials. 
+                        Mix comfort and style with perfectly tailored casual pieces that 
+                        take you from brunch to evening drinks effortlessly.
+                    </p>
+                    <div class="style-items">
+                        <span class="style-tag">Knit Sweaters</span>
+                        <span class="style-tag">Denim</span>
+                        <span class="style-tag">Sneakers</span>
+                        <span class="style-tag">Tote Bags</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lookbook Gallery -->
+    <section class="lookbook-gallery" id="lookbook">
+        <div class="section-header">
+            <h2 class="section-title">Lookbook Gallery</h2>
+            <p class="section-subtitle">Visual inspiration for every occasion</p>
+        </div>
+
+        <div class="lookbook-grid">
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=800&fit=crop" alt="Look 1" class="lookbook-image">
+                <div class="lookbook-overlay">
+                    <p class="lookbook-text">Urban Chic</p>
+                </div>
+            </div>
+
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&h=400&fit=crop" alt="Look 2" class="lookbook-image">
+                <div class="lookbook-overlay">
+                    <p class="lookbook-text">Minimalist</p>
+                </div>
+            </div>
+
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=400&fit=crop" alt="Look 3" class="lookbook-image">
+                <div class="lookbook-overlay">
+                    <p class="lookbook-text">Street Style</p>
+                </div>
+            </div>
+
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=400&fit=crop" alt="Look 4" class="lookbook-image">
+                <div class="lookbook-overlay">
+                    <p class="lookbook-text">Glamour</p>
+                </div>
+            </div>
+
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=600&h=400&fit=crop" alt="Look 5" class="lookbook-image">
+                <div class="lookbook-overlay">
+                    <p class="lookbook-text">Casual Friday</p>
+                </div>
+            </div>
+
+            <div class="lookbook-item">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=800&fit=crop" alt="Look 6" class="lookbook-image">
+                <div class="lookbook-overlay">
+                    <p class="lookbook-text">Evening Wear</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Email Collection Modal -->
+    <div class="email-modal" id="emailModal">
+        <div class="email-modal-content">
+            <button class="email-modal-close" id="emailModalClose">&times;</button>
+            <div class="email-modal-header">
+                <div class="email-modal-icon">💌</div>
+                <h3 class="email-modal-title">Explore Our Exclusive Collection</h3>
+                <p class="email-modal-subtitle">Get early access to our latest fashion pieces and personalized styling tips delivered directly to your inbox</p>
+            </div>
+            
+            <form class="email-form" id="emailForm">
+                <div class="email-input-group">
+                    <input 
+                        type="email" 
+                        class="email-input" 
+                        id="emailInput" 
+                        placeholder="Enter your email address"
+                        required
+                    >
+                    <button type="submit" class="email-submit-btn" id="emailSubmitBtn">
+                        <span class="btn-text">Send My Style Guide</span>
+                        <span class="btn-loading" style="display: none;">Sending...</span>
+                    </button>
+                </div>
+            </form>
+            
+            <div class="email-benefits">
+                <h5>What you'll receive:</h5>
+                <ul>
+                    <li>Personalized outfit combinations based on your style quiz</li>
+                    <li>Seasonal fashion trends curated for your taste</li>
+                    <li>Exclusive access to new collections and sales</li>
+                    <li>Weekly style tips from our fashion experts</li>
+                    <li>Color palette recommendations for your skin tone</li>
+                </ul>
+            </div>
+            
+            <div class="email-footer">
+                <p>✨ Join over 50,000 fashion enthusiasts who trust our style expertise</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-modal-content">
+            <div class="success-animation">
+                <div class="success-icon">🎉</div>
+                <div class="success-confetti"></div>
+            </div>
+            <h3 class="success-title">Welcome to Your Style Journey!</h3>
+            <p class="success-message">Your personalized fashion recommendations are being prepared by our expert stylists. You'll receive your custom style guide within 24 hours, featuring looks that perfectly match your unique taste and lifestyle.</p>
+            <button class="success-close-btn" id="successCloseBtn">Start Exploring</button>
+        </div>
+    </div>
+
+    <!-- Page Content Modals -->
+    <!-- About Us Modal -->
+    <div class="page-modal" id="aboutModal">
+        <div class="page-modal-content">
+            <div class="page-modal-header">
+                <button class="page-modal-close" onclick="closePageModal('aboutModal')">&times;</button>
+                <h1 class="page-modal-title">About VOGUE STYLE</h1>
+            </div>
+            <div class="page-modal-body">
+                <p>Welcome to VOGUE STYLE, where fashion meets innovation and personal expression becomes an art form.</p>
+                
+                <h2>Our Story</h2>
+                <p>Founded in 2020, VOGUE STYLE emerged from a simple yet powerful vision: to democratize high fashion and make sophisticated style accessible to everyone. We believe that great fashion should not be limited by budget, body type, or personal circumstances.</p>
+                
+                <p>Our journey began when our founder, inspired by the lack of personalized fashion guidance in the digital space, decided to create a platform that combines cutting-edge technology with timeless style principles.</p>
+                
+                <h2>Our Mission</h2>
+                <p>We are committed to:</p>
+                <ul>
+                    <li>Providing personalized fashion recommendations that celebrate individual style</li>
+                    <li>Curating high-quality pieces that transcend seasonal trends</li>
+                    <li>Building a community where fashion enthusiasts can discover, learn, and grow</li>
+                    <li>Promoting sustainable and ethical fashion practices</li>
+                </ul>
+                
+                <h2>What Makes Us Different</h2>
+                <p>At VOGUE STYLE, we understand that fashion is deeply personal. Our innovative style quiz and recommendation system takes into account not just your preferences, but your lifestyle, body type, and personal goals. We don't just sell clothes – we help you build a wardrobe that tells your unique story.</p>
+                
+                <div class="contact-info">
+                    <h4>Get in Touch</h4>
+                    <p>Email: <a href="mailto:6633547@gmail.com">6633547@gmail.com</a></p>
+                    <p>Follow us on social media for daily style inspiration and behind-the-scenes content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="page-modal" id="privacyModal">
+        <div class="page-modal-content">
+            <div class="page-modal-header">
+                <button class="page-modal-close" onclick="closePageModal('privacyModal')">&times;</button>
+                <h1 class="page-modal-title">Privacy Policy</h1>
+            </div>
+            <div class="page-modal-body">
+                <p><strong>Last updated:</strong> January 2025</p>
+                
+                <h2>Information We Collect</h2>
+                <p>We collect information you provide directly to us, such as:</p>
+                <ul>
+                    <li>Email addresses for our newsletter and personalized recommendations</li>
+                    <li>Style preferences and quiz responses</li>
+                    <li>Communication preferences and feedback</li>
+                </ul>
+                
+                <h2>How We Use Your Information</h2>
+                <p>We use the information we collect to:</p>
+                <ul>
+                    <li>Provide personalized fashion recommendations</li>
+                    <li>Send you relevant style updates and offers</li>
+                    <li>Improve our services and user experience</li>
+                    <li>Respond to your inquiries and provide customer support</li>
+                </ul>
+                
+                <h2>Information Sharing</h2>
+                <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy. We may share information with:</p>
+                <ul>
+                    <li>Service providers who assist in our operations</li>
+                    <li>Legal authorities when required by law</li>
+                </ul>
+                
+                <h2>Data Security</h2>
+                <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                
+                <h2>Your Rights</h2>
+                <p>You have the right to:</p>
+                <ul>
+                    <li>Access and update your personal information</li>
+                    <li>Opt-out of marketing communications</li>
+                    <li>Request deletion of your data</li>
+                </ul>
+                
+                <h2>Contact Us</h2>
+                <p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:6633547@gmail.com">6633547@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div class="page-modal" id="termsModal">
+        <div class="page-modal-content">
+            <div class="page-modal-header">
+                <button class="page-modal-close" onclick="closePageModal('termsModal')">&times;</button>
+                <h1 class="page-modal-title">Terms of Service</h1>
+            </div>
+            <div class="page-modal-body">
+                <p><strong>Last updated:</strong> January 2025</p>
+                
+                <h2>Acceptance of Terms</h2>
+                <p>By accessing and using VOGUE STYLE, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                
+                <h2>Use License</h2>
+                <p>Permission is granted to temporarily access the materials on VOGUE STYLE for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+                <ul>
+                    <li>Modify or copy the materials</li>
+                    <li>Use the materials for any commercial purpose or for any public display</li>
+                    <li>Attempt to reverse engineer any software contained on the website</li>
+                    <li>Remove any copyright or other proprietary notations from the materials</li>
+                </ul>
+                
+                <h2>User Account</h2>
+                <p>When you create an account with us, you must provide information that is accurate, complete, and current at all times. You are responsible for safeguarding the password and for all activities that occur under your account.</p>
+                
+                <h2>Prohibited Uses</h2>
+                <p>You may not use our service:</p>
+                <ul>
+                    <li>For any unlawful purpose or to solicit others to perform unlawful acts</li>
+                    <li>To violate any international, federal, provincial, or state regulations, rules, laws, or local ordinances</li>
+                    <li>To infringe upon or violate our intellectual property rights or the intellectual property rights of others</li>
+                    <li>To harass, abuse, insult, harm, defame, slander, disparage, intimidate, or discriminate</li>
+                </ul>
+                
+                <h2>Disclaimer</h2>
+                <p>The information on this website is provided on an 'as is' basis. To the fullest extent permitted by law, VOGUE STYLE excludes all representations, warranties, conditions, and terms.</p>
+                
+                <h2>Limitation of Liability</h2>
+                <p>In no event shall VOGUE STYLE or its suppliers be liable for any damages arising out of the use or inability to use the materials on the website.</p>
+                
+                <h2>Contact Information</h2>
+                <p>Questions about the Terms of Service should be sent to us at <a href="mailto:6633547@gmail.com">6633547@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="section-header">
+                <h2 class="section-title">About VOGUE STYLE</h2>
+                <p class="section-subtitle">Redefining fashion through personalized style curation</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-story">
+                    <h3>Our Story</h3>
+                    <p>
+                        Founded with a passion for helping individuals discover their unique style identity, 
+                        VOGUE STYLE represents the intersection of cutting-edge fashion and personalized curation. 
+                        We believe that every person deserves to feel confident and authentic in their clothing choices.
+                    </p>
+                    <p>
+                        Our journey began with a simple observation: fashion should be personal, accessible, and 
+                        empowering. Through our comprehensive style assessment and expert curation, we've helped 
+                        thousands of individuals transform their wardrobes and, more importantly, their confidence.
+                    </p>
+                </div>
+                
+                <div class="about-mission">
+                    <h3>Our Mission</h3>
+                    <p>
+                        To democratize high-end fashion consulting by making personalized style guidance 
+                        accessible to everyone. We combine the expertise of seasoned fashion professionals 
+                        with innovative technology to deliver tailored recommendations that reflect your 
+                        lifestyle, preferences, and aspirations.
+                    </p>
+                </div>
+                
+                <div class="about-values">
+                    <h3>What We Stand For</h3>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <div class="value-icon">✨</div>
+                            <h4>Authenticity</h4>
+                            <p>We believe your style should be a true reflection of who you are</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">🌱</div>
+                            <h4>Sustainability</h4>
+                            <p>Promoting conscious fashion choices that respect our planet</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">🎯</div>
+                            <h4>Precision</h4>
+                            <p>Delivering carefully curated recommendations tailored to your needs</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">💎</div>
+                            <h4>Excellence</h4>
+                            <p>Maintaining the highest standards in fashion curation and service</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-team">
+                    <h3>Expert Team</h3>
+                    <p>
+                        Our team consists of experienced fashion stylists, trend analysts, and technology 
+                        innovators who work together to bring you the most relevant and personalized fashion 
+                        guidance. With decades of combined experience in luxury fashion, personal styling, 
+                        and consumer psychology, we understand what makes great style truly personal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#" onclick="openPageModal('aboutModal')">About Us</a></li>
+                    <li><a href="#" onclick="openPageModal('privacyModal')">Privacy Policy</a></li>
+                    <li><a href="#" onclick="openPageModal('termsModal')">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="https://instagram.com/voguestyle" target="_blank">Instagram</a></li>
+                    <li><a href="https://pinterest.com/voguestyle" target="_blank">Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VOGUE STYLE. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-slide');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Dynamic product hover effects
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 10px 40px rgba(0,0,0,0.1)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Lazy loading simulation for images
+        const images = document.querySelectorAll('img');
+        const imageOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px 50px 0px'
+        };
+
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                    }, 100);
+                    observer.unobserve(img);
+                }
+            });
+        }, imageOptions);
+
+        images.forEach(img => imageObserver.observe(img));
+
+        // Footer link functions
+        function showAlert(message) {
+            alert(`${message} - Feature coming soon!`);
+        }
+
+        function showNewsletter() {
+            const email = prompt('Enter your email to subscribe to our newsletter:');
+            if (email && email.includes('@')) {
+                alert(`Thank you for subscribing with ${email}! You'll receive our latest fashion updates.`);
+            } else if (email) {
+                alert('Please enter a valid email address.');
+            }
+        }
+
+
+
+        // Fashion Quiz Data with 12 comprehensive questions
+        const quizQuestions = [
+            {
+                question: "What occasions do you dress for most often?",
+                options: [
+                    { icon: "💼", text: "Professional Work", desc: "Office meetings, corporate events, business settings", value: "professional" },
+                    { icon: "🌟", text: "Social Events", desc: "Parties, dinners, celebrations, date nights", value: "social" },
+                    { icon: "👕", text: "Casual Daily", desc: "Everyday activities, errands, relaxed settings", value: "casual" },
+                    { icon: "🏃‍♀️", text: "Active Lifestyle", desc: "Gym, sports, outdoor activities, fitness", value: "active" }
+                ]
+            },
+            {
+                question: "Which season's fashion resonates with you most?",
+                options: [
+                    { icon: "🌸", text: "Spring Freshness", desc: "Light layers, pastels, floral patterns, renewal", value: "spring" },
+                    { icon: "☀️", text: "Summer Vibes", desc: "Bright colors, breathable fabrics, minimal styling", value: "summer" },
+                    { icon: "🍂", text: "Autumn Warmth", desc: "Rich textures, earth tones, cozy layers", value: "autumn" },
+                    { icon: "❄️", text: "Winter Elegance", desc: "Luxe fabrics, deep colors, sophisticated styling", value: "winter" }
+                ]
+            },
+            {
+                question: "What's your ideal color palette?",
+                options: [
+                    { icon: "⚫", text: "Classic Neutrals", desc: "Black, white, beige, gray - timeless sophistication", value: "neutrals" },
+                    { icon: "🔥", text: "Bold & Vibrant", desc: "Bright reds, electric blues, vivid greens", value: "bold" },
+                    { icon: "🌙", text: "Soft & Muted", desc: "Pastels, dusty roses, sage greens, gentle hues", value: "soft" },
+                    { icon: "🌅", text: "Warm & Earthy", desc: "Terracotta, mustard, burgundy, natural tones", value: "warm" }
+                ]
+            },
+            {
+                question: "What's your budget range for fashion?",
+                options: [
+                    { icon: "💡", text: "Smart Shopper", desc: "$50-150 per piece, value-focused choices", value: "budget" },
+                    { icon: "⚖️", text: "Balanced Investment", desc: "$150-400 per piece, quality meets affordability", value: "moderate" },
+                    { icon: "💎", text: "Premium Quality", desc: "$400-800 per piece, luxury materials", value: "premium" },
+                    { icon: "👑", text: "Luxury Collector", desc: "$800+ per piece, designer exclusives", value: "luxury" }
+                ]
+            },
+            {
+                question: "How would you describe your body type?",
+                options: [
+                    { icon: "🍎", text: "Apple Shape", desc: "Fuller midsection, broader shoulders", value: "apple" },
+                    { icon: "🍐", text: "Pear Shape", desc: "Narrower shoulders, fuller hips", value: "pear" },
+                    { icon: "⏳", text: "Hourglass", desc: "Balanced bust and hips, defined waist", value: "hourglass" },
+                    { icon: "📏", text: "Rectangle", desc: "Straight silhouette, minimal curves", value: "rectangle" }
+                ]
+            },
+            {
+                question: "What style aesthetic speaks to you?",
+                options: [
+                    { icon: "🏛️", text: "Classic Timeless", desc: "Traditional elegance, refined sophistication", value: "classic" },
+                    { icon: "🌟", text: "Modern Trendy", desc: "Latest fashion, contemporary edge", value: "trendy" },
+                    { icon: "🌿", text: "Bohemian Free", desc: "Artistic flair, eclectic mix, natural elements", value: "bohemian" },
+                    { icon: "🖤", text: "Edgy Chic", desc: "Bold statements, avant-garde, dramatic pieces", value: "edgy" }
+                ]
+            },
+            {
+                question: "What matters most in your clothing choices?",
+                options: [
+                    { icon: "☁️", text: "Ultimate Comfort", desc: "Soft fabrics, relaxed fits, ease of movement", value: "comfort" },
+                    { icon: "🎯", text: "Perfect Fit", desc: "Tailored silhouettes, flattering proportions", value: "fit" },
+                    { icon: "✨", text: "Style Statement", desc: "Fashion-forward looks, trendsetting pieces", value: "style" },
+                    { icon: "💪", text: "Quality Durability", desc: "Long-lasting materials, timeless construction", value: "quality" }
+                ]
+            },
+            {
+                question: "How do you prefer to shop for fashion?",
+                options: [
+                    { icon: "🛍️", text: "In-Store Experience", desc: "Touch fabrics, try on, personal service", value: "instore" },
+                    { icon: "💻", text: "Online Convenience", desc: "Browse at home, wide selection, easy returns", value: "online" },
+                    { icon: "👥", text: "Personal Styling", desc: "Expert curation, personalized recommendations", value: "styling" },
+                    { icon: "🔍", text: "Research & Compare", desc: "Read reviews, compare options, informed decisions", value: "research" }
+                ]
+            },
+            {
+                question: "What's your lifestyle like?",
+                options: [
+                    { icon: "🏢", text: "Corporate Professional", desc: "Office environment, client meetings, formal events", value: "corporate" },
+                    { icon: "🎨", text: "Creative Flexible", desc: "Artistic work, casual meetings, self-expression", value: "creative" },
+                    { icon: "👶", text: "Family Focused", desc: "Active parenting, practical needs, comfort priority", value: "family" },
+                    { icon: "✈️", text: "Travel & Social", desc: "Frequent events, networking, versatile wardrobe", value: "social" }
+                ]
+            },
+            {
+                question: "Which fashion icons inspire you?",
+                options: [
+                    { icon: "👑", text: "Royal Elegance", desc: "Kate Middleton, Grace Kelly - refined sophistication", value: "royal" },
+                    { icon: "🌟", text: "Hollywood Glamour", desc: "Audrey Hepburn, Cate Blanchett - timeless chic", value: "hollywood" },
+                    { icon: "🔥", text: "Modern Icons", desc: "Zendaya, Blake Lively - contemporary style", value: "modern" },
+                    { icon: "🎭", text: "Artistic Visionaries", desc: "Tilda Swinton, Lady Gaga - avant-garde expression", value: "artistic" }
+                ]
+            },
+            {
+                question: "How important are sustainable fashion practices to you?",
+                options: [
+                    { icon: "🌱", text: "Eco Priority", desc: "Sustainable brands, ethical production, minimal waste", value: "eco" },
+                    { icon: "♻️", text: "Conscious Consumer", desc: "Some sustainable choices, gradual transition", value: "conscious" },
+                    { icon: "⚖️", text: "Balanced Approach", desc: "Consider sustainability alongside other factors", value: "balanced" },
+                    { icon: "💫", text: "Style First", desc: "Focus on aesthetics, sustainability secondary", value: "style_first" }
+                ]
+            },
+            {
+                question: "What image do you want your style to convey?",
+                options: [
+                    { icon: "💼", text: "Professional Authority", desc: "Competent, trustworthy, leadership presence", value: "authority" },
+                    { icon: "🌸", text: "Approachable Charm", desc: "Friendly, warm, effortlessly elegant", value: "approachable" },
+                    { icon: "🔥", text: "Confident Power", desc: "Bold, fearless, commanding attention", value: "powerful" },
+                    { icon: "🎨", text: "Creative Individual", desc: "Unique, artistic, authentic self-expression", value: "creative_individual" }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let quizAnswers = {};
+
+        // Add click effects to product cards
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Quiz functionality
+            const startQuizBtn = document.getElementById('startQuizBtn');
+            const quizContainer = document.getElementById('quizContainer');
+            const questionCard = document.getElementById('questionCard');
+            const quizResults = document.getElementById('quizResults');
+            const getRecommendationsBtn = document.getElementById('getRecommendationsBtn');
+            const retakeQuizBtn = document.getElementById('retakeQuizBtn');
+            
+            // Start quiz
+            startQuizBtn.addEventListener('click', function() {
+                document.querySelector('.quiz-header').style.display = 'none';
+                quizContainer.style.display = 'block';
+                currentQuestionIndex = 0;
+                quizAnswers = {};
+                showQuestion(0);
+            });
+            
+            // Show question
+            function showQuestion(index) {
+                const question = quizQuestions[index];
+                const progressPercent = ((index + 1) / quizQuestions.length) * 100;
+                
+                document.getElementById('progressFill').style.width = progressPercent + '%';
+                document.getElementById('currentQuestion').textContent = index + 1;
+                document.getElementById('totalQuestions').textContent = quizQuestions.length;
+                document.getElementById('questionTitle').textContent = question.question;
+                
+                const optionsContainer = document.getElementById('questionOptions');
+                optionsContainer.innerHTML = '';
+                
+                question.options.forEach(option => {
+                    const optionElement = document.createElement('button');
+                    optionElement.className = 'quiz-option';
+                    optionElement.innerHTML = `
+                        <span class="option-icon">${option.icon}</span>
+                        <div class="option-content">
+                            <span class="option-text">${option.text}</span>
+                            <span class="option-desc">${option.desc}</span>
+                        </div>
+                    `;
+                    
+                    optionElement.addEventListener('click', () => selectOption(option.value, optionElement));
+                    optionsContainer.appendChild(optionElement);
+                });
+            }
+            
+            // Select option
+            function selectOption(value, element) {
+                // Record answer
+                const questionKeys = ['occasion', 'season', 'colors', 'budget', 'bodyType', 'style', 'priority', 'shopping', 'lifestyle', 'inspiration', 'sustainability', 'image'];
+                quizAnswers[questionKeys[currentQuestionIndex]] = value;
+                
+                // Visual feedback
+                document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                element.classList.add('selected');
+                
+                // Move to next question
+                setTimeout(() => {
+                    if (currentQuestionIndex < quizQuestions.length - 1) {
+                        currentQuestionIndex++;
+                        showQuestion(currentQuestionIndex);
+                    } else {
+                        showResults();
+                    }
+                }, 800);
+            }
+            
+            // Show results
+            function showResults() {
+                questionCard.style.display = 'none';
+                quizResults.style.display = 'block';
+                
+                const resultsSummary = generateResultsSummary();
+                const summaryElement = document.getElementById('resultsSummary');
+                
+                if (summaryElement) {
+                    summaryElement.innerHTML = resultsSummary;
+                }
+            }
+            
+            // Generate results summary
+            function generateResultsSummary() {
+                const translations = {
+                    occasion: { 
+                        professional: 'Professional Work', 
+                        social: 'Social Events', 
+                        casual: 'Casual Daily', 
+                        active: 'Active Lifestyle' 
+                    },
+                    season: { 
+                        spring: 'Spring Freshness', 
+                        summer: 'Summer Vibes', 
+                        autumn: 'Autumn Warmth', 
+                        winter: 'Winter Elegance' 
+                    },
+                    colors: { 
+                        neutrals: 'Classic Neutrals', 
+                        bold: 'Bold & Vibrant', 
+                        soft: 'Soft & Muted', 
+                        warm: 'Warm & Earthy' 
+                    },
+                    budget: { 
+                        budget: 'Smart Shopper', 
+                        moderate: 'Balanced Investment', 
+                        premium: 'Premium Quality', 
+                        luxury: 'Luxury Collector' 
+                    },
+                    bodyType: {
+                        apple: 'Apple Shape',
+                        pear: 'Pear Shape', 
+                        hourglass: 'Hourglass',
+                        rectangle: 'Rectangle'
+                    },
+                    style: { 
+                        classic: 'Classic Timeless', 
+                        trendy: 'Modern Trendy', 
+                        bohemian: 'Bohemian Free', 
+                        edgy: 'Edgy Chic' 
+                    },
+                    priority: {
+                        comfort: 'Ultimate Comfort',
+                        fit: 'Perfect Fit',
+                        style: 'Style Statement', 
+                        quality: 'Quality Durability'
+                    },
+                    shopping: {
+                        instore: 'In-Store Experience',
+                        online: 'Online Convenience',
+                        styling: 'Personal Styling',
+                        research: 'Research & Compare'
+                    },
+                    lifestyle: {
+                        corporate: 'Corporate Professional',
+                        creative: 'Creative Flexible',
+                        family: 'Family Focused',
+                        social: 'Travel & Social'
+                    },
+                    inspiration: {
+                        royal: 'Royal Elegance',
+                        hollywood: 'Hollywood Glamour',
+                        modern: 'Modern Icons',
+                        artistic: 'Artistic Visionaries'
+                    },
+                    sustainability: {
+                        eco: 'Eco Priority',
+                        conscious: 'Conscious Consumer',
+                        balanced: 'Balanced Approach',
+                        style_first: 'Style First'
+                    },
+                    image: {
+                        authority: 'Professional Authority',
+                        approachable: 'Approachable Charm',
+                        powerful: 'Confident Power',
+                        creative_individual: 'Creative Individual'
+                    }
+                };
+
+                return `
+                    <h5>Your Personal Style Profile</h5>
+                    <p><strong>Primary Occasions:</strong> ${translations.occasion[quizAnswers.occasion] || 'Not specified'}</p>
+                    <p><strong>Seasonal Preference:</strong> ${translations.season[quizAnswers.season] || 'Not specified'}</p>
+                    <p><strong>Color Palette:</strong> ${translations.colors[quizAnswers.colors] || 'Not specified'}</p>
+                    <p><strong>Budget Range:</strong> ${translations.budget[quizAnswers.budget] || 'Not specified'}</p>
+                    <p><strong>Body Type:</strong> ${translations.bodyType[quizAnswers.bodyType] || 'Not specified'}</p>
+                    <p><strong>Style Aesthetic:</strong> ${translations.style[quizAnswers.style] || 'Not specified'}</p>
+                    <p><strong>Priority:</strong> ${translations.priority[quizAnswers.priority] || 'Not specified'}</p>
+                    <p><strong>Shopping Style:</strong> ${translations.shopping[quizAnswers.shopping] || 'Not specified'}</p>
+                    <p><strong>Lifestyle:</strong> ${translations.lifestyle[quizAnswers.lifestyle] || 'Not specified'}</p>
+                    <p><strong>Inspiration:</strong> ${translations.inspiration[quizAnswers.inspiration] || 'Not specified'}</p>
+                    <p><strong>Sustainability:</strong> ${translations.sustainability[quizAnswers.sustainability] || 'Not specified'}</p>
+                    <p><strong>Desired Image:</strong> ${translations.image[quizAnswers.image] || 'Not specified'}</p>
+                    <p style="margin-top: 20px; font-style: italic; opacity: 0.8;">Based on your comprehensive style profile, we'll curate a personalized collection of fashion recommendations that perfectly match your unique preferences, lifestyle, and aesthetic goals.</p>
+                `;
+            }
+            
+            // Use event delegation for get recommendations button
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.id === 'getRecommendationsBtn') {
+                    e.preventDefault();
+                    showEmailModal();
+                }
+            });
+            
+            // Retake quiz
+            retakeQuizBtn.addEventListener('click', function() {
+                document.querySelector('.quiz-header').style.display = 'block';
+                quizContainer.style.display = 'none';
+                quizResults.style.display = 'none';
+                currentQuestionIndex = 0;
+                quizAnswers = {};
+            });
+
+            // Page modal functions
+            window.openPageModal = function(modalId) {
+                const modal = document.getElementById(modalId);
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            window.closePageModal = function(modalId) {
+                const modal = document.getElementById(modalId);
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Close page modals when clicking outside
+            document.querySelectorAll('.page-modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closePageModal(this.id);
+                    }
+                });
+            });
+
+            // Close page modals with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.page-modal.show').forEach(modal => {
+                        closePageModal(modal.id);
+                    });
+                    // Also close email and success modals
+                    hideEmailModal();
+                    hideSuccessModal();
+                }
+            });
+
+            // Email Modal Functions
+            function showEmailModal() {
+                const modal = document.getElementById('emailModal');
+                if (modal) {
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function hideEmailModal() {
+                const modal = document.getElementById('emailModal');
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+                document.getElementById('emailInput').value = '';
+                // Reset button state
+                const submitBtn = document.getElementById('emailSubmitBtn');
+                submitBtn.disabled = false;
+                document.querySelector('.btn-text').style.display = 'inline';
+                document.querySelector('.btn-loading').style.display = 'none';
+            }
+
+            function showSuccessModal() {
+                const emailModal = document.getElementById('emailModal');
+                const successModal = document.getElementById('successModal');
+                
+                emailModal.classList.remove('show');
+                successModal.classList.add('show');
+            }
+
+            function hideSuccessModal() {
+                const modal = document.getElementById('successModal');
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Email modal event listeners
+            document.getElementById('emailModalClose').addEventListener('click', hideEmailModal);
+            document.getElementById('successCloseBtn').addEventListener('click', hideSuccessModal);
+
+            // Close modals when clicking outside
+            document.getElementById('emailModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideEmailModal();
+                }
+            });
+
+            document.getElementById('successModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideSuccessModal();
+                }
+            });
+
+            // Email form submission
+            document.getElementById('emailForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const emailInput = document.getElementById('emailInput');
+                const submitBtn = document.getElementById('emailSubmitBtn');
+                const btnText = document.querySelector('.btn-text');
+                const btnLoading = document.querySelector('.btn-loading');
+                const email = emailInput.value.trim();
+                
+                // Simple email validation
+                function validateEmail(email) {
+                    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return re.test(email);
+                }
+                
+                if (validateEmail(email)) {
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    btnText.style.display = 'none';
+                    btnLoading.style.display = 'inline';
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Log user data (in real app, this would be sent to server)
+                        console.log('User style profile and email:', { 
+                            profile: quizAnswers, 
+                            email: email,
+                            timestamp: new Date().toISOString()
+                        });
+                        
+                        // Show success modal
+                        showSuccessModal();
+                        
+                        // Reset form
+                        emailInput.value = '';
+                        submitBtn.disabled = false;
+                        btnText.style.display = 'inline';
+                        btnLoading.style.display = 'none';
+                    }, 2000);
+                } else {
+                    // Show validation error
+                    emailInput.style.borderColor = '#e74c3c';
+                    emailInput.style.boxShadow = '0 0 0 4px rgba(231, 76, 60, 0.1)';
+                    emailInput.focus();
+                    
+                    setTimeout(() => {
+                        emailInput.style.borderColor = '#e0e0e0';
+                        emailInput.style.boxShadow = 'none';
+                    }, 3000);
+                }
+            });
+
+            // Make showEmailModal globally accessible
+            window.showEmailModal = showEmailModal;
+
+
+
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const productName = this.querySelector('.product-name').textContent;
+                    const productPrice = this.querySelector('.product-price').textContent;
+                    alert(`${productName} - ${productPrice}\n\nThis would normally open the product details page.`);
+                });
+            });
+
+            // Add click effects to lookbook items
+            const lookbookItems = document.querySelectorAll('.lookbook-item');
+            lookbookItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const lookText = this.querySelector('.lookbook-text').textContent;
+                    alert(`${lookText} Style\n\nThis would normally open a detailed lookbook view.`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
