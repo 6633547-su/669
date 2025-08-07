@@ -191,6 +191,105 @@
             width: 100%;
         }
 
+        /* Collections Section */
+        .collections-section {
+            padding: 100px 50px;
+            background: #fafafa;
+        }
+
+        .collections-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .collection-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .collection-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .collection-image {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .collection-item:hover .collection-image img {
+            transform: scale(1.05);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 40px 30px 30px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .collection-item:hover .collection-overlay {
+            transform: translateY(0);
+        }
+
+        .collection-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .collection-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .collection-btn {
+            background: white;
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .collection-btn:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+        }
+
         /* Featured Section */
         .featured-section {
             padding: 100px 50px;
@@ -1400,6 +1499,7 @@
             }
 
             .featured-section,
+            .collections-section,
             .style-guide,
             .lookbook-gallery {
                 padding: 60px 20px;
@@ -1407,6 +1507,11 @@
 
             .product-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .collections-grid {
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
 
@@ -1736,7 +1841,61 @@
         </div>
     </section>
 
-
+    <!-- Collections Section -->
+    <section class="collections-section" id="collections">
+        <div class="collections-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Collections</h2>
+                <p class="section-subtitle">Curated fashion for every occasion</p>
+            </div>
+            
+            <div class="collections-grid">
+                <div class="collection-item">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600&h=800&fit=crop" alt="Spring Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3 class="collection-title">Spring Essentials</h3>
+                            <p class="collection-desc">Fresh and vibrant pieces for the new season</p>
+                            <button class="collection-btn" onclick="showEmailModal()">Explore Collection</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=800&fit=crop" alt="Evening Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3 class="collection-title">Evening Elegance</h3>
+                            <p class="collection-desc">Sophisticated pieces for special occasions</p>
+                            <button class="collection-btn" onclick="showEmailModal()">Explore Collection</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&h=800&fit=crop" alt="Casual Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3 class="collection-title">Casual Chic</h3>
+                            <p class="collection-desc">Effortless style for everyday wear</p>
+                            <button class="collection-btn" onclick="showEmailModal()">Explore Collection</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="collection-item">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=800&fit=crop" alt="Work Collection" loading="lazy">
+                        <div class="collection-overlay">
+                            <h3 class="collection-title">Professional Power</h3>
+                            <p class="collection-desc">Confident looks for the modern workplace</p>
+                            <button class="collection-btn" onclick="showEmailModal()">Explore Collection</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Style Guide Section -->
     <section class="style-guide" id="style-guide">
